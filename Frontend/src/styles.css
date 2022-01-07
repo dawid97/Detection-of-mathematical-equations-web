@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  background: url(./images/p20.jpg);
+  background-color: gray;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: whitesmoke;
+  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
+}

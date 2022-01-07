@@ -1,1 +1,16 @@
-<app-canvas></app-canvas>
+<h1 class="header">Detection of mathematical equations</h1>
+
+<div class="main">
+  <div>
+    <app-canvas (result)="changedResult($event)" (equation)="changedEquation($event)"></app-canvas>
+  </div>
+  <div class="blocks">
+    <h1 class="title">Result:</h1>
+    <div class="result">{{result}}</div>
+    <h1 class="title">Equation:</h1>
+    <div class="equation">{{equation}}</div>
+  </div>
+</div>
+<button (click)="onClear()" class="btn">
+  Clear
+</button>

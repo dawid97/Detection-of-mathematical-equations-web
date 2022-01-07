@@ -4,7 +4,9 @@ import {
   Input,
   ElementRef,
   AfterViewInit,
-  ViewChild
+  ViewChild,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { switchMap, takeUntil, pairwise } from 'rxjs/operators';
@@ -12,7 +14,7 @@ import { switchMap, takeUntil, pairwise } from 'rxjs/operators';
 @Component({
   selector: 'app-canvas',
   template: '<canvas #canvas></canvas>',
-  styles: ['canvas { border: 1px solid #000; }']
+  styles: ['canvas { opacity: 0.7; border-radius: 15px}']
 })
 export class CanvasComponent implements AfterViewInit {
 
@@ -22,12 +24,14 @@ export class CanvasComponent implements AfterViewInit {
 
   @Input() public width = 800;
   @Input() public height = 600;
+  @Output() public result = new EventEmitter();
+  @Output() public equation = new EventEmitter();
 
   private cx: CanvasRenderingContext2D | null | undefined;
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas?.nativeElement;
-    
+
     this.cx = canvasEl.getContext('2d');
 
     canvasEl.width = this.width;
@@ -82,18 +86,20 @@ export class CanvasComponent implements AfterViewInit {
         this.drawOnCanvas(prevPos, currentPos);
       });
 
-      fromEvent(canvasEl, 'mouseup').pipe().subscribe(
-        async () => {
-          const imageUrl = canvasEl.toDataURL('image/png');
-          // Leave only raw image data
-          const imageData = imageUrl.substring(22);
+    fromEvent(canvasEl, 'mouseup').pipe().subscribe(
+      async () => {
+        const imageUrl = canvasEl.toDataURL('image/png');
+        // Leave only raw image data
+        const imageData = imageUrl.substring(22);
 
-          const reqBody = {img: imageData};
-          this.http.post('http://localhost:8000/predict', reqBody).subscribe((res)=>{
-            console.log(res);
-          })
-        }
-      )
+        const reqBody = { img: imageData };
+        this.http.post('http://localhost:8000/predict', reqBody).subscribe((res: any) => {
+          console.log(res);
+          res.result === 'NaN' ? this.result.emit("") : this.result.emit(res.result);
+          this.equation.emit(res.equation);
+        })
+      }
+    )
   }
 
   private drawOnCanvas(

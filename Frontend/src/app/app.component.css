@@ -1,4 +1,74 @@
 p {
     font-family: Lato;
   }
-  
+
+.canvas {
+  background-color: lightseagreen;
+  opacity: 0.4;
+}
+
+.blocks {
+  /* background-color: maroon; */
+  width: 900px;
+  height: 600px;
+}
+
+.result {
+  background-color: white;
+  color: black;
+  font-size: 50px;
+  margin-top: 20px;
+  margin-left: 50px;
+  width: 600px;
+  height: 200px;
+  border-radius: 15px;
+  opacity: 0.7;
+}
+
+.equation {
+  color: black;
+  background-color: white;
+  border-radius: 15px;
+  font-size: 50px;
+  width: 600px;
+  margin-left: 50px;
+  margin-top: 20px;
+  height: 200px;
+  opacity: 0.7;
+}
+
+h1 {
+  text-align: center;
+  /* background-color: green; */
+}
+
+.main {
+  /* background-color: lime; */
+  width: 1800px;
+  display: inline-flex;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.title {
+  margin-left: 50px;
+  text-align: left;
+  max-width: 150px;
+}
+
+.header {
+  font-size: 50px;
+}
+
+.btn {
+  font-size: 30px;
+  margin-left: 50px;
+  margin-top: 10px;
+  border-radius: 15px;
+  opacity: 0.7;
+  color: black;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
