@@ -6,6 +6,7 @@ This project is a web service which allows users to draw on canvas simple mathem
 | ------ | ------ |
 | Angular | https://angular.io/ |
 | FastAPI | https://fastapi.tiangolo.com/ |
+| Uvicorn | https://www.uvicorn.org/ |
 | Keras | https://keras.io/ |
 ## How to use
 - Draw equation on the canvas (left side)
